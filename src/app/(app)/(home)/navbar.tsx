@@ -4,7 +4,7 @@ import { Poppins } from "next/font/google";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { usePathname } from "next/navigation";
-import NavbarSidebar from "@/app/(home)/navbar-sidebar";
+import NavbarSidebar from "@/app/(app)/(home)/navbar-sidebar";
 import { useState } from "react";
 import { MenuIcon } from "lucide-react";
 
