@@ -1,13 +1,11 @@
 import type { Metadata } from "next";
 import { DM_Sans } from "next/font/google";
 import "./globals.css";
-
+import Footer from "@/app/(home)/footer";
 
 const dmSans = DM_Sans({
-    subsets: ["latin"],
-
-})
-
+  subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -21,10 +19,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${dmSans.className} antialiased`}
-      >
-        {children}
+      <body className={`${dmSans.className} antialiased`}>
+        <div>{children}</div>
       </body>
     </html>
   );
