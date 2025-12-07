@@ -5,11 +5,11 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import useDropdownPosition from "@/app/(app)/(home)/search-filters/use-dropdown-position";
 import SubcategoryMenu from "@/app/(app)/(home)/search-filters/subcategory-menu";
-import { CustomCategory } from "@/app/(app)/(home)/types";
 import Link from "next/link";
+import { CategoriesGetManyOutput } from "@/modules/categories/types";
 
 interface CategoryDropdownProps {
-  category: CustomCategory;
+  category: CategoriesGetManyOutput[1];
   isActive?: boolean;
   isNavigationHovered?: boolean;
 }
