@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { BookmarkCheckIcon, ListFilterIcon, SearchIcon } from "lucide-react";
 import { Input } from "@/components/ui/input";
-import CategoriesSidebar from "@/app/(app)/(home)/search-filters/categories-sidebar";
+    import CategoriesSidebar from "@/modules/home/ui/components/search-filters/categories-sidebar";
 import { Button } from "@/components/ui/button";
 import { useTRPC } from "@/trpc/client";
 import { useQuery } from "@tanstack/react-query";
