@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import { DM_Sans } from "next/font/google";
 import "./globals.css";
 import { TRPCReactProvider } from "@/trpc/client";
-import {Toast} from "next/dist/next-devtools/dev-overlay/components/toast";
-import {Toaster} from "@/components/ui/sonner";
+import { Toast } from "next/dist/next-devtools/dev-overlay/components/toast";
+import { Toaster } from "@/components/ui/sonner";
+import { NuqsAdapter } from "nuqs/adapters/next";
 
 const dmSans = DM_Sans({
   subsets: ["latin"],
@@ -22,11 +23,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${dmSans.className} antialiased`}>
-        <div>
-          <TRPCReactProvider>{children}
-          <Toaster />
+        <NuqsAdapter>
+          <TRPCReactProvider>
+            {children}
+            <Toaster />
           </TRPCReactProvider>
-        </div>
+        </NuqsAdapter>
       </body>
     </html>
   );
