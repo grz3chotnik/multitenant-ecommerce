@@ -18,6 +18,7 @@ interface CategoriesSidebarProps {
 }
 
 const CategoriesSidebar = ({ open, onOpenChange }: CategoriesSidebarProps) => {
+  // TODO: research this trpc
   const trpc = useTRPC();
   const { data } = useQuery(trpc.categories.getMany.queryOptions());
 
