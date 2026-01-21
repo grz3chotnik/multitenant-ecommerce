@@ -21,7 +21,6 @@ const CategoryDropdown = ({
 }: CategoryDropdownProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const dropDownRef = useRef<HTMLDivElement>(null);
-  const { getDropDownPosition } = useDropdownPosition(dropDownRef);
 
   const onMouseEnter = () => {
     if (category.subcategories) {
@@ -31,7 +30,6 @@ const CategoryDropdown = ({
 
   const onMouseLeave = () => setIsOpen(false);
 
-  const dropDownPosition = getDropDownPosition();
 
   return (
     <div
@@ -57,7 +55,7 @@ const CategoryDropdown = ({
         {category.subcategories && category.subcategories.length > 0 && (
           <div
             className={cn(
-              "opacity-0 absolute -bottom-3 w-0 h-0 border-l-[10px] border-r-[10xp] border-b-[10px] border-l-transparent border-r-transparent border-b-black left-1/2 -translate-x-1/2",
+              "opacity-0 absolute -bottom-3 w-0 h-0 border-l-[10px] border-r-[10px] border-b-[10px] border-l-transparent border-r-transparent border-b-black left-1/2 -translate-x-1/2",
               isOpen && "opacity-100",
             )}
           />
@@ -67,7 +65,6 @@ const CategoryDropdown = ({
       <SubcategoryMenu
         category={category}
         isOpen={isOpen}
-        position={dropDownPosition}
       />
     </div>
   );

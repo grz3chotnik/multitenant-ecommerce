@@ -4,6 +4,7 @@ import type { SearchParams } from "nuqs/server";
 import { dehydrate } from "@tanstack/query-core";
 import { loadProductFilters } from "@/modules/products/search-params";
 import ProductListView from "@/modules/products/ui/views/product-list-view";
+import { DEFAULT_LIMIT } from "@/constants";
 
 interface Props {
   params: Promise<{ category: string }>;
@@ -16,9 +17,11 @@ const Page = async ({ params, searchParams }: Props) => {
 
   console.log(JSON.stringify(filters), "this is from rsc");
   const queryClient = getQueryClient();
-  void queryClient.prefetchQuery(
-    trpc.products.getMany.queryOptions({
+  void queryClient.prefetchInfiniteQuery(
+    trpc.products.getMany.infiniteQueryOptions({
+      ...filters,
       category,
+      limit: DEFAULT_LIMIT,
     }),
   );
 
