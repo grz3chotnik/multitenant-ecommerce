@@ -2,17 +2,26 @@
 
 // TODO: ADD REAL RATINGS
 
-import React, {Fragment} from "react";
+import React, { Fragment } from "react";
 import Image from "next/image";
 import { useTRPC } from "@/trpc/client";
+import dynamic from "next/dynamic";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { formatCurrency, generateTenantUrl } from "@/lib/utils";
 import Link from "next/link";
 import StarRating from "@/components/star-rating";
 import { Button } from "@/components/ui/button";
 import { LinkIcon, StarIcon } from "lucide-react";
-import {Progress} from "@/components/ui/progress";
+import { Progress } from "@/components/ui/progress";
+// import CartButton from "@/modules/products/ui/components/cart-button";
 
+const CartButton = dynamic(
+  () => import("../components/cart-button").then((mod) => mod.CartButton),
+  {
+    ssr: false,
+    loading: () => <Button disabled className="flex-1  bg-pink-400">Add to cart</Button>
+  },
+);
 interface ProductViewProps {
   productId: string;
   tenantSlug: string;
@@ -98,9 +107,7 @@ const ProductView = ({ productId, tenantSlug }: ProductViewProps) => {
             <div className="border-t lg:border-t-0 lg:border-l h-full">
               <div className="flex flex-col gap-4 p-6 border-b">
                 <div className="flex flex-row items-center gap-2">
-                  <Button variant="elevated" className="flex-1 bg-pink-400 ">
-                    Add to card
-                  </Button>
+                  <CartButton tenantSlug={tenantSlug} productId={productId} />
                   <Button
                     className="size-12 "
                     variant="elevated"
@@ -129,22 +136,14 @@ const ProductView = ({ productId, tenantSlug }: ProductViewProps) => {
                 </div>
 
                 <div className="grid grid-cols-[auto_1fr_auto] gap-3 mt-4">
-                  {[5, 4,3,2,1 ].map((stars) => (
-
-                      <Fragment key={stars}>
-<div className="font-medium ">
-  {stars} {stars === 1 ? "star" : "stars"}
-</div>
-                        <Progress
-                        value={0}
-                        className="h-[1lh]"
-
-                        />
-                        <div className="font-medium">
-                          {0}%
-                        </div>
-                      </Fragment>
-
+                  {[5, 4, 3, 2, 1].map((stars) => (
+                    <Fragment key={stars}>
+                      <div className="font-medium ">
+                        {stars} {stars === 1 ? "star" : "stars"}
+                      </div>
+                      <Progress value={0} className="h-[1lh]" />
+                      <div className="font-medium">{0}%</div>
+                    </Fragment>
                   ))}
                 </div>
               </div>
