@@ -10,7 +10,8 @@
     "generate:types": "payload generate:types",
     "db:fresh": "payload migrate:fresh",
     "db:seed": "payload run src/seed.ts",
-    "db:reset": "bun run db:fresh && bun run db:seed"
+    "db:reset": "bun run db:fresh && bun run db:seed",
+    "webhookhandler": "stripe listen --forward-to localhost:3000/api/stripe/webhooks"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
@@ -70,6 +71,7 @@
     "recharts": "2.15.4",
     "server-only": "^0.0.1",
     "sonner": "^2.0.7",
+    "stripe": "^20.2.0",
     "superjson": "^2.2.6",
     "tailwind-merge": "^3.4.0",
     "vaul": "^1.1.2",
