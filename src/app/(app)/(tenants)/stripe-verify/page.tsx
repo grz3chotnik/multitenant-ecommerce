@@ -1,0 +1,35 @@
+"use client";
+
+import React, { useEffect } from "react";
+import { useTRPC } from "@/trpc/client";
+import { useMutation } from "@tanstack/react-query";
+import { trpc } from "@/trpc/server";
+import { LoaderIcon } from "lucide-react";
+
+const Page = () => {
+  const trpc = useTRPC();
+  const { mutate: verify } = useMutation(
+    trpc.checkout.verify.mutationOptions({
+      onSuccess: (data) => {
+        // eslint-disable-next-line react-hooks/immutability
+        window.location.href = data.url;
+      },
+      onError: () => {
+        // eslint-disable-next-line react-hooks/immutability
+        window.location.href = "/";
+      },
+    }),
+  );
+
+  useEffect(() => {
+    verify();
+  }, [verify]);
+
+  return (
+    <div className="flex min-h-screen items-center justify-center">
+      <LoaderIcon className="animate-spin text-black" />
+    </div>
+  );
+};
+
+export default Page;

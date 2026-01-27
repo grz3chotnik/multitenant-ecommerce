@@ -1,8 +1,10 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { getQueryClient, trpc } from "@/trpc/server";
 import { HydrationBoundary } from "@tanstack/react-query";
 import { dehydrate } from "@tanstack/query-core";
-import ProductView from "@/modules/library/ui/views/product-view";
+import ProductView, {
+  ProductViewSkeleton,
+} from "@/modules/library/ui/views/product-view";
 
 interface PageProps {
   params: Promise<{
@@ -21,14 +23,16 @@ const Page = async ({ params }: PageProps) => {
   );
 
   void queryClient.prefetchQuery(
-      trpc.reviews.getOne.queryOptions({
-        productId,
-      }),
+    trpc.reviews.getOne.queryOptions({
+      productId,
+    }),
   );
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <ProductView productId={productId} />
+      <Suspense fallback={<ProductViewSkeleton />}>
+        <ProductView productId={productId} />
+      </Suspense>
     </HydrationBoundary>
   );
 };
