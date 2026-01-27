@@ -3,7 +3,6 @@
 import React, { useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import useDropdownPosition from "@/modules/home/ui/components/search-filters/use-dropdown-position";
 import SubcategoryMenu from "@/modules/home/ui/components/search-filters/subcategory-menu";
 import Link from "next/link";
 import { CategoriesGetManyOutput } from "@/modules/categories/types";

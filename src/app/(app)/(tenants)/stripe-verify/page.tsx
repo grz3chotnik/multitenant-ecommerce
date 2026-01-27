@@ -3,7 +3,6 @@
 import React, { useEffect } from "react";
 import { useTRPC } from "@/trpc/client";
 import { useMutation } from "@tanstack/react-query";
-import { trpc } from "@/trpc/server";
 import { LoaderIcon } from "lucide-react";
 
 const Page = () => {

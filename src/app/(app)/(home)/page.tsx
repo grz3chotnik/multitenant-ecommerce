@@ -1,4 +1,4 @@
-import { caller, getQueryClient, trpc } from "@/trpc/server";
+import {  getQueryClient, trpc } from "@/trpc/server";
 import { HydrationBoundary } from "@tanstack/react-query";
 import type { SearchParams } from "nuqs/server";
 import { dehydrate } from "@tanstack/query-core";

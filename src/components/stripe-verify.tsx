@@ -1,7 +1,6 @@
 import React from "react";
 import { Button, Link } from "@payloadcms/ui";
 
-interface StripeVerifyProps {}
 
 export const StripeVerify = () => {
   return (

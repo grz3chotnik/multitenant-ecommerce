@@ -1,6 +1,6 @@
 "use client";
 
-import { ReactNode, useState } from "react";
+import {  useState } from "react";
 import { ChevronDownIcon, ChevronRightIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { PriceFilter } from "@/modules/products/ui/components/price-filter";

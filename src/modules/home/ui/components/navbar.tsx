@@ -8,7 +8,6 @@ import NavbarSidebar from "@/modules/home/ui/components/navbar-sidebar";
 import { useState } from "react";
 import { MenuIcon } from "lucide-react";
 import { useTRPC } from "@/trpc/client";
-import { getQueryClient } from "@/trpc/server";
 import { useQuery } from "@tanstack/react-query";
 
 const poppins = Poppins({

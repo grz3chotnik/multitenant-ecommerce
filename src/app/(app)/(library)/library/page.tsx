@@ -5,7 +5,7 @@ import { DEFAULT_LIMIT } from "@/constants";
 import { HydrationBoundary } from "@tanstack/react-query";
 import { dehydrate } from "@tanstack/query-core";
 
-interface PageProps {}
+export const dynamic = "force-dynamic"
 
 const Page = async () => {
   const queryClient = getQueryClient();

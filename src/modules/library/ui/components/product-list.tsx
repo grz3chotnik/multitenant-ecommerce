@@ -1,22 +1,15 @@
 "use client";
 
 import { useTRPC } from "@/trpc/client";
-import {
-  useSuspenseInfiniteQuery,
-  useSuspenseQuery,
-} from "@tanstack/react-query";
-import { useProductFilters } from "@/modules/products/hooks/use-product-filters";
+import { useSuspenseInfiniteQuery } from "@tanstack/react-query";
 import ProductCard, {
   ProductCardSkeleton,
 } from "@/modules/library/ui/components/product-card";
 import { DEFAULT_LIMIT } from "@/constants";
 import { Button } from "@/components/ui/button";
 import { InboxIcon } from "lucide-react";
-import { cn } from "@/lib/utils";
-
 
 const ProductList = () => {
-
   const trpc = useTRPC();
   const { data, hasNextPage, isFetchingNextPage, fetchNextPage } =
     useSuspenseInfiniteQuery(
@@ -41,11 +34,7 @@ const ProductList = () => {
 
   return (
     <>
-      <div
-        className=
-          "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4"
-
-      >
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4">
         {data?.pages
           .flatMap((page) => page.docs)
           .map((product) => (
@@ -82,11 +71,7 @@ export default ProductList;
 
 export const ProductListSkeleton = () => {
   return (
-      <div
-          className=
-              "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4"
-
-      >
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4">
       {Array.from({ length: DEFAULT_LIMIT }).map((_, index) => (
         <ProductCardSkeleton key={index} />
       ))}

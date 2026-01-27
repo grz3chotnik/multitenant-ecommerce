@@ -1,5 +1,5 @@
 "use client";
-import { InboxIcon, TriangleAlertIcon } from "lucide-react";
+import {  TriangleAlertIcon } from "lucide-react";
 
 
 const ErrorPage = () => {
@@ -13,4 +13,4 @@ const ErrorPage = () => {
   );
 };
 
-export default Error;
+export default ErrorPage;

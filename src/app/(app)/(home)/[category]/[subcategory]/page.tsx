@@ -1,4 +1,4 @@
-import { caller, getQueryClient, trpc } from "@/trpc/server";
+import { getQueryClient, trpc } from "@/trpc/server";
 import { HydrationBoundary } from "@tanstack/react-query";
 import { dehydrate } from "@tanstack/query-core";
 import { loadProductFilters } from "@/modules/products/search-params";
@@ -10,6 +10,7 @@ interface Props {
   params: Promise<{ subcategory: string }>;
   searchParams: Promise<SearchParams>;
 }
+export const dynamic = "force-dynamic"
 
 const Page = async ({ params, searchParams }: Props) => {
   const { subcategory } = await params;

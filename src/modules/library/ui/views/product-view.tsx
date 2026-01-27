@@ -3,9 +3,6 @@
 import React, { Suspense } from "react";
 import Link from "next/link";
 import { ArrowLeftIcon } from "lucide-react";
-import ProductList, {
-  ProductListSkeleton,
-} from "@/modules/library/ui/components/product-list";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { useTRPC } from "@/trpc/client";
 import ReviewSidebar from "@/modules/library/ui/components/review-sidebar";
