@@ -7,9 +7,8 @@ export function cn(...inputs: ClassValue[]) {
 
 export function generateTenantUrl(tenantSlug: string) {
   const isDevelopment = process.env.NODE_ENV === "development";
-  const isSubdomainRoutingEnabled = Boolean(
-    process.env.NEXT_PUBLIC_ENABLE_SUBDOMAIN_ROUTING!,
-  );
+  const isSubdomainRoutingEnabled =
+    process.env.NEXT_PUBLIC_ENABLE_SUBDOMAIN_ROUTING === "true";
 
   //in dev mode or subdomainrouting disabled , use normal routing
   if (isDevelopment || !isSubdomainRoutingEnabled) {
