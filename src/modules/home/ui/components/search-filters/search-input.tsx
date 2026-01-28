@@ -1,12 +1,13 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BookmarkCheckIcon, ListFilterIcon, SearchIcon } from "lucide-react";
 import { Input } from "@/components/ui/input";
-    import CategoriesSidebar from "@/modules/home/ui/components/search-filters/categories-sidebar";
+import CategoriesSidebar from "@/modules/home/ui/components/search-filters/categories-sidebar";
 import { Button } from "@/components/ui/button";
 import { useTRPC } from "@/trpc/client";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
+import { useProductFilters } from "@/modules/products/hooks/use-product-filters";
 
 interface SearchInputProps {
   disabled?: boolean;
@@ -15,8 +16,17 @@ interface SearchInputProps {
 const SearchInput = ({ disabled }: SearchInputProps) => {
   const trpc = useTRPC();
   const session = useQuery(trpc.auth.session.queryOptions());
-
+  const [filters, setFilters] = useProductFilters();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [searchValue, setSearchValue] = useState(filters.search);
+
+  useEffect(() => {
+    const timeOutId = setTimeout(() => {
+      setFilters({ search: searchValue });
+    }, 500);
+    return () => clearTimeout(timeOutId);
+  }, [searchValue, setFilters]);
+
   return (
     <div className="flex items-center gap-2 w-full">
       <CategoriesSidebar open={isSidebarOpen} onOpenChange={setIsSidebarOpen} />
@@ -26,6 +36,8 @@ const SearchInput = ({ disabled }: SearchInputProps) => {
           className="pl-8"
           placeholder="Search products"
           disabled={disabled}
+          value={searchValue}
+          onChange={(event) => setSearchValue(event.target.value)}
         />
       </div>
       {/*    TODO: ADD CATEGORIES VIEW BUTTON*/}
